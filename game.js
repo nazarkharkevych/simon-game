@@ -9,9 +9,11 @@ var started = false;
 
 $(document).keydown(function () {
   if (!started) {
+    setTimeout(function() {
     $("#level-title").text("Level " + level);
     nextSequence();
     started = true;
+    }, 100);
   }
 });
 
