@@ -7,7 +7,10 @@ var userClickedPattern = [];
 var level = 0;
 var started = false;
 
-$(document).keydown(function () {
+$(document).keydown(startGame);
+$(document).on("touchend", startGame);
+
+function startGame() {
   if (!started) {
     setTimeout(function() {
     $("#level-title").text("Level " + level);
@@ -15,10 +18,10 @@ $(document).keydown(function () {
     started = true;
     }, 100);
   }
-});
+}
 
 function nextSequence() {
-    userClickedPattern = [];
+  userClickedPattern = [];
   var randomNumber = Math.floor(Math.random() * 4);
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
@@ -35,7 +38,7 @@ $(".btn").click(function () {
   userClickedPattern.push(userChosenColour);
   playSound(userChosenColour);
   animatePress(userChosenColour);
-  checkAnswer(userClickedPattern.length-1);  
+  checkAnswer(userClickedPattern.length-1);
 });
 
 function checkAnswer(currentLevel) {
